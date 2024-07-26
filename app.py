@@ -25,6 +25,11 @@ key_sections = {
 }
 
 def play_sound(key):
+    # Stop any currently playing sounds
+    for sound in sounds.values():
+        if sound.get_num_channels() > 0:
+            return
+
     for section, keys in key_sections.items():
         if key in keys:
             sounds[section].play()
