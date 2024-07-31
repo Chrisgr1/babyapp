@@ -32,25 +32,20 @@ key_sections = {
     'section6': ['KEY_SEMICOLON', 'KEY_APOSTROPHE', 'KEY_COMMA', 'KEY_DOT', 'KEY_SLASH', 'KEY_BACKSLASH']
 }
 
-def play_sound(key):
-    # Stop any currently playing music
+def play_sound(sound_file):
     if pygame.mixer.music.get_busy():
-        print(f"Music is currently playing, key {key} ignored.")
+        print(f"Music is currently playing, sound {sound_file} ignored.")
         return
 
-    for section, keys in key_sections.items():
-        if key in keys:
-            sound_file = sound_files[section]
-            if os.path.exists(sound_file):
-                print(f"Playing sound: {sound_file}")
-                try:
-                    pygame.mixer.music.load(sound_file)
-                    pygame.mixer.music.play()
-                except Exception as e:
-                    print(f"Failed to play sound: {e}")
-            else:
-                print(f"Sound file not found: {sound_file}")
-            break
+    if os.path.exists(sound_file):
+        print(f"Playing sound: {sound_file}")
+        try:
+            pygame.mixer.music.load(sound_file)
+            pygame.mixer.music.play()
+        except Exception as e:
+            print(f"Failed to play sound: {e}")
+    else:
+        print(f"Sound file not found: {sound_file}")
 
 def main():
     print("Press Ctrl + C to exit.")
@@ -64,7 +59,10 @@ def main():
                     if key == 'KEY_C' and event.ev_state == 1 and 'KEY_LEFTCTRL' in [e.ev_code for e in events if e.ev_state == 1]:
                         print("Exiting...")
                         return
-                    play_sound(key)
+                    for section, keys in key_sections.items():
+                        if key in keys and event.ev_state == 1:  # Ensure it's a key press event
+                            play_sound(sound_files[section])
+                            break
     except KeyboardInterrupt:
         print("Program terminated by user.")
 
