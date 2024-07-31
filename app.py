@@ -2,8 +2,12 @@ import pygame
 from inputs import get_key
 import os
 
-# Initialize pygame mixer
-pygame.mixer.init()
+# Initialize pygame mixer with error handling
+try:
+    pygame.mixer.init()
+    print("Pygame mixer initialized successfully.")
+except Exception as e:
+    print(f"Failed to initialize pygame mixer: {e}")
 
 # Define the directory where the sound files are located
 sound_dir = "/home/pi/apps/babyapp"
@@ -37,9 +41,15 @@ def play_sound(key):
     for section, keys in key_sections.items():
         if key in keys:
             sound_file = sound_files[section]
-            print(f"Playing sound: {sound_file}")
-            pygame.mixer.music.load(sound_file)
-            pygame.mixer.music.play()
+            if os.path.exists(sound_file):
+                print(f"Playing sound: {sound_file}")
+                try:
+                    pygame.mixer.music.load(sound_file)
+                    pygame.mixer.music.play()
+                except Exception as e:
+                    print(f"Failed to play sound: {e}")
+            else:
+                print(f"Sound file not found: {sound_file}")
             break
 
 def main():
@@ -50,6 +60,7 @@ def main():
             for event in events:
                 if event.ev_type == 'Key':
                     key = event.ev_code
+                    print(f"Detected key: {key}, state: {event.ev_state}")
                     if key == 'KEY_C' and event.ev_state == 1 and 'KEY_LEFTCTRL' in [e.ev_code for e in events if e.ev_state == 1]:
                         print("Exiting...")
                         return
