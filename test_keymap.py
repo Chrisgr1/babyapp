@@ -56,46 +56,8 @@ def main():
                 if event.ev_type == 'Key':
                     key = event.ev_code
                     print(f"Detected key: {key}, state: {event.ev_state}")
-                    if key == 'KEY_C' and event.ev_state == 1 and 'KEY_LEFTCTRL' in [e.ev_code for e in events if e.ev_state == 1]:
-                        print("Exiting...")
-                        return
-
-                    if event.ev_state == 1:  # Ensure it's a key press event
-                        if key in key_sections['section1']:
-                            play_sound(sound_files['section1'])
-                        elif key in key_sections['section2']:
-                            play_sound(sound_files['section2'])
-                        elif key in key_sections['section3']:
-                            play_sound(sound_files['section3'])
-                        elif key in key_sections['section4']:
-                            play_sound(sound_files['section4'])
-                        elif key in key_sections['section5']:
-                            play_sound(sound_files['section5'])
-                        elif key in key_sections['section6']:
-                            play_sound(sound_files['section6'])
-    except KeyboardInterrupt:
-        print("Program terminated by user.")
-
-if __name__ == "__main__":
-    main()
-
-
-def main():
-    print("Press Ctrl + C to exit.")
-    try:
-        while True:
-            events = get_key()
-            for event in events:
-                if event.ev_type == 'Key':
-                    key = event.ev_code
-                    print(f"Detected key: {key}, state: {event.ev_state}")
-                    if key == 'KEY_C' and event.ev_state == 1 and 'KEY_LEFTCTRL' in [e.ev_code for e in events if e.ev_state == 1]:
-                        print("Exiting...")
-                        return
-                    for section, keys in key_sections.items():
-                        if key in keys and event.ev_state == 1:  # Ensure it's a key press event
-                            play_sound(sound_files[section])
-                            break
+                    if key == 'KEY_1' and event.ev_state == 1:
+                        play_sound(sound_files['section1'])
     except KeyboardInterrupt:
         print("Program terminated by user.")
 
