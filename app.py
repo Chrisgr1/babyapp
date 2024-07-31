@@ -1,17 +1,21 @@
 import pygame
 import keyboard
+import os
 
 # Initialize pygame mixer
 pygame.mixer.init()
 
-# Define the sound files for each section
+# Define the directory where the sound files are located
+sound_dir = "./"
+
+# Define the sound files for each section with absolute paths
 sounds = {
-    'section1': pygame.mixer.Sound('Elefant.mp3'),
-    'section2': pygame.mixer.Sound('cobra.mp3'),
-    'section3': pygame.mixer.Sound('Kapuzineraffe.mp3'),
-    'section4': pygame.mixer.Sound('geier.mp3'),
-    'section5': pygame.mixer.Sound('Rhinozerus.mp3'),
-    'section6': pygame.mixer.Sound('wolf.mp3'),
+    'section1': pygame.mixer.Sound(os.path.join(sound_dir, 'Elefant.mp3')),
+    'section2': pygame.mixer.Sound(os.path.join(sound_dir, 'cobra.mp3')),
+    'section3': pygame.mixer.Sound(os.path.join(sound_dir, 'Kapuzineraffe.mp3')),
+    'section4': pygame.mixer.Sound(os.path.join(sound_dir, 'geier.mp3')),
+    'section5': pygame.mixer.Sound(os.path.join(sound_dir, 'Rhinozerus.mp3')),
+    'section6': pygame.mixer.Sound(os.path.join(sound_dir, 'wolf.mp3')),
 }
 
 # Define key sections
