@@ -1,5 +1,6 @@
 import pygame
 from inputs import get_key
+import os
 
 # Initialize pygame mixer
 pygame.mixer.init()
@@ -8,13 +9,13 @@ pygame.mixer.init()
 sound_dir = "/home/pi/apps/babyapp"
 
 # Define the sound files for each section with absolute paths
-sounds = {
-    'section1': pygame.mixer.Sound(os.path.join(sound_dir, 'Elefant.mp3')),
-    'section2': pygame.mixer.Sound(os.path.join(sound_dir, 'cobra.mp3')),
-    'section3': pygame.mixer.Sound(os.path.join(sound_dir, 'Kapuzineraffe.mp3')),
-    'section4': pygame.mixer.Sound(os.path.join(sound_dir, 'geier.mp3')),
-    'section5': pygame.mixer.Sound(os.path.join(sound_dir, 'Rhinozerus.mp3')),
-    'section6': pygame.mixer.Sound(os.path.join(sound_dir, 'wolf.mp3')),
+sound_files = {
+    'section1': os.path.join(sound_dir, 'Elefant.mp3'),
+    'section2': os.path.join(sound_dir, 'cobra.mp3'),
+    'section3': os.path.join(sound_dir, 'Kapuzineraffe.mp3'),
+    'section4': os.path.join(sound_dir, 'geier.mp3'),
+    'section5': os.path.join(sound_dir, 'Rhinozerus.mp3'),
+    'section6': os.path.join(sound_dir, 'wolf.mp3'),
 }
 
 # Define key sections
@@ -28,14 +29,14 @@ key_sections = {
 }
 
 def play_sound(key):
-    # Stop any currently playing sounds
-    for sound in sounds.values():
-        if sound.get_num_channels() > 0:
-            return
+    # Stop any currently playing music
+    if pygame.mixer.music.get_busy():
+        return
 
     for section, keys in key_sections.items():
         if key in keys:
-            sounds[section].play()
+            pygame.mixer.music.load(sound_files[section])
+            pygame.mixer.music.play()
             break
 
 def main():
