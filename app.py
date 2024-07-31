@@ -31,11 +31,14 @@ key_sections = {
 def play_sound(key):
     # Stop any currently playing music
     if pygame.mixer.music.get_busy():
+        print(f"Music is currently playing, key {key} ignored.")
         return
 
     for section, keys in key_sections.items():
         if key in keys:
-            pygame.mixer.music.load(sound_files[section])
+            sound_file = sound_files[section]
+            print(f"Playing sound: {sound_file}")
+            pygame.mixer.music.load(sound_file)
             pygame.mixer.music.play()
             break
 
