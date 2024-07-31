@@ -1,11 +1,12 @@
 import pygame
-from inputs import get_key
+import keyboard
+import os
 
 # Initialize pygame mixer
 pygame.mixer.init()
 
 # Define the directory where the sound files are located
-sound_dir = "/home/pi/apps/babyapp"
+sound_dir = "./"
 
 # Define the sound files for each section with absolute paths
 sounds = {
@@ -19,12 +20,12 @@ sounds = {
 
 # Define key sections
 key_sections = {
-    'section1': ['KEY_1', 'KEY_2', 'KEY_3', 'KEY_4', 'KEY_5', 'KEY_A', 'KEY_B', 'KEY_C', 'KEY_D', 'KEY_E', 'KEY_F', 'KEY_GRAVE'],
-    'section2': ['KEY_Q', 'KEY_W', 'KEY_E', 'KEY_R', 'KEY_T', 'KEY_Y', 'KEY_U', 'KEY_I', 'KEY_O', 'KEY_P'],
-    'section3': ['KEY_A', 'KEY_S', 'KEY_D', 'KEY_F', 'KEY_G', 'KEY_H', 'KEY_J', 'KEY_K', 'KEY_L'],
-    'section4': ['KEY_Z', 'KEY_X', 'KEY_C', 'KEY_V', 'KEY_B', 'KEY_N', 'KEY_M'],
-    'section5': ['KEY_6', 'KEY_7', 'KEY_8', 'KEY_9', 'KEY_0', 'KEY_MINUS', 'KEY_EQUAL', 'KEY_LEFTBRACE', 'KEY_RIGHTBRACE', 'KEY_BACKSLASH'],
-    'section6': ['KEY_SEMICOLON', 'KEY_APOSTROPHE', 'KEY_COMMA', 'KEY_DOT', 'KEY_SLASH', 'KEY_BACKSLASH']
+    'section1': ['1', '2', '3', '4', '5', 'a', 'b', 'c', 'd', 'e', 'f', '`'],
+    'section2': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+    'section3': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+    'section4': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+    'section5': ['6', '7', '8', '9', '0', '-', '=', '[', ']', '\\'],
+    'section6': [';', "'", ',', '.', '/', '<', '>', '?']
 }
 
 def play_sound(key):
@@ -42,14 +43,13 @@ def main():
     print("Press Ctrl + C to exit.")
     try:
         while True:
-            events = get_key()
-            for event in events:
-                if event.ev_type == 'Key':
-                    key = event.ev_code
-                    if key == 'KEY_C' and event.ev_state == 1 and 'KEY_LEFTCTRL' in [e.ev_code for e in events if e.ev_state == 1]:
-                        print("Exiting...")
-                        return
-                    play_sound(key)
+            event = keyboard.read_event()
+            if event.event_type == keyboard.KEY_DOWN:
+                if event.name == 'c' and keyboard.is_pressed('ctrl'):
+                    print("Exiting...")
+                    break
+                else:
+                    play_sound(event.name)
     except KeyboardInterrupt:
         print("Program terminated by user.")
 
