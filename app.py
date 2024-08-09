@@ -11,12 +11,12 @@ sound_dir = "/home/pi/apps/babyapp"
 
 # Define the sound files for each section with absolute paths
 sound_files = {
-    'section1': os.path.join(sound_dir, 'Elefant.mp3'),
-    'section2': os.path.join(sound_dir, 'cobra.mp3'),
-    'section3': os.path.join(sound_dir, 'Kapuzineraffe.mp3'),
-    'section4': os.path.join(sound_dir, 'geier.mp3'),
-    'section5': os.path.join(sound_dir, 'Rhinozerus.mp3'),
-    'section6': os.path.join(sound_dir, 'wolf.mp3'),
+    'section1': os.path.join(sound_dir, 'BabySharkOrcaStra.mp3'),
+    'section2': os.path.join(sound_dir, 'acousticguitar.mp3'),
+    'section3': os.path.join(sound_dir, 'cats.mp3'),
+    'section4': os.path.join(sound_dir, 'Whale.mp3'),
+    'section5': os.path.join(sound_dir, 'sitar.mp3'),
+    'section6': os.path.join(sound_dir, 'drumspipes.mp3'),
 }
 
 # Define key sections
