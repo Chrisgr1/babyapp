@@ -15,8 +15,8 @@ sound_files = {
     'section2': os.path.join(sound_dir, 'acousticguitar.mp3'),
     'section3': os.path.join(sound_dir, 'cats.mp3'),
     'section4': os.path.join(sound_dir, 'Whale.mp3'),
-    'section5': os.path.join(sound_dir, 'sitar.mp3'),
-    'section6': os.path.join(sound_dir, 'drumspipes.mp3'),
+    'section5': os.path.join(sound_dir, 'chicken.mp3'),
+    'section6': os.path.join(sound_dir, 'HarmonicaBluesAmandaVenturaTheWay.mp3'),
 }
 
 # Define key sections
