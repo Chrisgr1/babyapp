@@ -30,15 +30,43 @@ sound_files = {
 
 # Define key mappings for each section
 key_sections = {
-    'section1': [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4],
-    'section2': [pygame.K_q, pygame.K_w, pygame.K_e, pygame.K_r],
-    'section3': [pygame.K_a, pygame.K_s, pygame.K_d, pygame.K_f],
-    'section4': [pygame.K_z, pygame.K_x, pygame.K_c, pygame.K_v],
-    'section5': [pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8],
-    'section6': [pygame.K_y, pygame.K_u, pygame.K_i, pygame.K_o],
-    'section7': [pygame.K_h, pygame.K_j, pygame.K_k, pygame.K_l],
-    'section8': [pygame.K_n, pygame.K_m, pygame.K_COMMA, pygame.K_PERIOD],
+    'section1': [
+        pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, 
+        pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0
+    ],
+    'section2': [
+        pygame.K_q, pygame.K_w, pygame.K_e, pygame.K_r, pygame.K_t, 
+        pygame.K_y, pygame.K_u, pygame.K_i, pygame.K_o, pygame.K_p
+    ],
+    'section3': [
+        pygame.K_a, pygame.K_s, pygame.K_d, pygame.K_f, pygame.K_g, 
+        pygame.K_h, pygame.K_j, pygame.K_k, pygame.K_l
+    ],
+    'section4': [
+        pygame.K_z, pygame.K_x, pygame.K_c, pygame.K_v, pygame.K_b, 
+        pygame.K_n, pygame.K_m, pygame.K_COMMA, pygame.K_PERIOD, pygame.K_SLASH
+    ],
+    'section5': [
+        pygame.K_TAB, pygame.K_SPACE, pygame.K_BACKSPACE, pygame.K_RETURN, 
+        pygame.K_ESCAPE, pygame.K_MINUS, pygame.K_EQUALS, pygame.K_LEFTBRACKET, 
+        pygame.K_RIGHTBRACKET, pygame.K_BACKSLASH
+    ],
+    'section6': [
+        pygame.K_LCTRL, pygame.K_RCTRL, pygame.K_LALT, pygame.K_RALT, 
+        pygame.K_LSHIFT, pygame.K_RSHIFT, pygame.K_CAPSLOCK
+    ],
+    'section7': [
+        pygame.K_F1, pygame.K_F2, pygame.K_F3, pygame.K_F4, pygame.K_F5, 
+        pygame.K_F6, pygame.K_F7, pygame.K_F8, pygame.K_F9, pygame.K_F10, 
+        pygame.K_F11, pygame.K_F12
+    ],
+    'section8': [
+        pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, 
+        pygame.K_HOME, pygame.K_END, pygame.K_PAGEUP, pygame.K_PAGEDOWN, 
+        pygame.K_INSERT, pygame.K_DELETE
+    ],
 }
+
 
 # Initialize a dictionary to track key presses
 key_press_counts = defaultdict(int)  # Default to 0 for any key
