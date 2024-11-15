@@ -20,11 +20,11 @@ sound_dir = "/home/pi/apps/new/babyapp"
 sound_files = {
     'section1': os.path.join(sound_dir, 'BabySharkOrcaStra.mp3'),
     'section2': os.path.join(sound_dir, 'acousticguitar.mp3'),
-    'section3': os.path.join(sound_dir, 'carnival.mp3'),
+    'section3': os.path.join(sound_dir, 'RyuTheme.mp3'),
     'section4': os.path.join(sound_dir, 'fadeharp.mp3'),
     'section5': os.path.join(sound_dir, 'WarsawKtulu.mp3'),
     'section6': os.path.join(sound_dir, 'AliBaliBee.mp3'),
-    'section7': os.path.join(sound_dir, 'RyuTheme.mp3'),
+    'section7': os.path.join(sound_dir, 'carnival.mp3'),
     'section8': os.path.join(sound_dir, 'GlassBeams.mp3'),
 }
 
