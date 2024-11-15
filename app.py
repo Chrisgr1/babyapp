@@ -20,12 +20,12 @@ sound_dir = "/home/pi/apps/babyapp"
 sound_files = {
     'section1': os.path.join(sound_dir, 'BabySharkOrcaStra.mp3'),
     'section2': os.path.join(sound_dir, 'acousticguitar.mp3'),
-    'section3': os.path.join(sound_dir, 'cats.mp3'),
-    'section4': os.path.join(sound_dir, 'Whale.mp3'),
-    'section5': os.path.join(sound_dir, 'chicken.mp3'),
-    'section6': os.path.join(sound_dir, 'HarmonicaBluesAmandaVenturaTheWay.mp3'),
-    'section7': os.path.join(sound_dir, 'flute.mp3'),
-    'section8': os.path.join(sound_dir, 'drums.mp3'),
+    'section3': os.path.join(sound_dir, 'Carnival.mp3'),
+    'section4': os.path.join(sound_dir, 'Fade to Black Metallica Harp Guitar Cover Jamie Dupuis.mp3'),
+    'section5': os.path.join(sound_dir, 'Warsaw Guitar Orchestra The Call Of Ktulu.mp3'),
+    'section6': os.path.join(sound_dir, 'Ali Bali Bee Hamish Imlach.mp3'),
+    'section7': os.path.join(sound_dir, 'Ryu Theme Orchestral.mp3'),
+    'section8': os.path.join(sound_dir, 'Glass Beams Mahal Live.mp3'),
 }
 
 # Define key mappings for each section
