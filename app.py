@@ -92,7 +92,7 @@ def main():
     print("Press Ctrl + C to exit.")
     
     # Create a small window to capture events
-    screen = pygame.display.set_mode((100, 100))
+    screen = pygame.display.set_mode((1000, 1000))
     running = True
     
     try:
