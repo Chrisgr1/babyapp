@@ -1,10 +1,17 @@
-#using pygame for event-handling and sound
+# Using pygame for event-handling and sound
 import pygame
 import os
+from collections import defaultdict
 
-# Initialize pygame
+# Initialize pygame and the mixer
 pygame.init()
 pygame.mixer.init()
+
+# Disable mouse functionality
+pygame.mouse.set_visible(False)  # Hide the mouse cursor
+pygame.event.set_blocked(pygame.MOUSEMOTION)  # Block mouse motion events
+pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)  # Block mouse button down events
+pygame.event.set_blocked(pygame.MOUSEBUTTONUP)  # Block mouse button up events
 
 # Define the directory where the sound files are located
 sound_dir = "/home/pi/apps/babyapp"
@@ -17,21 +24,29 @@ sound_files = {
     'section4': os.path.join(sound_dir, 'Whale.mp3'),
     'section5': os.path.join(sound_dir, 'chicken.mp3'),
     'section6': os.path.join(sound_dir, 'HarmonicaBluesAmandaVenturaTheWay.mp3'),
+    'section7': os.path.join(sound_dir, 'flute.mp3'),
+    'section8': os.path.join(sound_dir, 'drums.mp3'),
 }
 
-# Define key sections
+# Define key mappings for each section
 key_sections = {
-    'section1': [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_a, pygame.K_b, pygame.K_c, pygame.K_d, pygame.K_e, pygame.K_f, pygame.K_BACKQUOTE],
-    'section2': [pygame.K_q, pygame.K_w, pygame.K_e, pygame.K_r, pygame.K_t, pygame.K_y, pygame.K_u, pygame.K_i, pygame.K_o, pygame.K_p],
-    'section3': [pygame.K_a, pygame.K_s, pygame.K_d, pygame.K_f, pygame.K_g, pygame.K_h, pygame.K_j, pygame.K_k, pygame.K_l],
-    'section4': [pygame.K_z, pygame.K_x, pygame.K_c, pygame.K_v, pygame.K_b, pygame.K_n, pygame.K_m],
-    'section5': [pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0, pygame.K_MINUS, pygame.K_EQUALS, pygame.K_LEFTBRACKET, pygame.K_RIGHTBRACKET, pygame.K_BACKSLASH],
-    'section6': [pygame.K_SEMICOLON, pygame.K_QUOTE, pygame.K_COMMA, pygame.K_PERIOD, pygame.K_SLASH, pygame.K_BACKSLASH]
+    'section1': [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4],
+    'section2': [pygame.K_q, pygame.K_w, pygame.K_e, pygame.K_r],
+    'section3': [pygame.K_a, pygame.K_s, pygame.K_d, pygame.K_f],
+    'section4': [pygame.K_z, pygame.K_x, pygame.K_c, pygame.K_v],
+    'section5': [pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8],
+    'section6': [pygame.K_y, pygame.K_u, pygame.K_i, pygame.K_o],
+    'section7': [pygame.K_h, pygame.K_j, pygame.K_k, pygame.K_l],
+    'section8': [pygame.K_n, pygame.K_m, pygame.K_COMMA, pygame.K_PERIOD],
 }
+
+# Initialize a dictionary to track key presses
+key_press_counts = defaultdict(int)  # Default to 0 for any key
 
 def play_sound(sound_file):
+    """Plays a sound if no other sound is currently playing."""
     if pygame.mixer.music.get_busy():
-        print(f"Music is currently playing, sound {sound_file} ignored.")
+        print(f"Music is currently playing. Ignoring: {sound_file}")
         return
 
     if os.path.exists(sound_file):
@@ -45,18 +60,31 @@ def play_sound(sound_file):
         print(f"Sound file not found: {sound_file}")
 
 def main():
+    """Main function to handle key press events and play corresponding sounds."""
     print("Press Ctrl + C to exit.")
-    screen = pygame.display.set_mode((100, 100))  # Create a small window to capture events
+    
+    # Create a small window to capture events
+    screen = pygame.display.set_mode((100, 100))
     running = True
+    
     try:
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     print(f"Detected key: {event.key}")
+                    
+                    # Increment the key press count
+                    key_press_counts[event.key] += 1
+
+                    # Display the updated count
+                    print(f"Key {pygame.key.name(event.key)} pressed {key_press_counts[event.key]} times.")
+                    
+                    # Check for Ctrl + C to exit
                     if event.key == pygame.K_c and pygame.key.get_mods() & pygame.KMOD_CTRL:
                         print("Exiting...")
                         running = False
                     else:
+                        # Check key mappings for each section
                         for section, keys in key_sections.items():
                             if event.key in keys:
                                 play_sound(sound_files[section])
@@ -66,6 +94,10 @@ def main():
     except KeyboardInterrupt:
         print("Program terminated by user.")
     finally:
+        # Print the final counts
+        print("\nFinal Key Press Counts:")
+        for key, count in key_press_counts.items():
+            print(f"{pygame.key.name(key)}: {count}")
         pygame.quit()
 
 if __name__ == "__main__":
