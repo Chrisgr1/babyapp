@@ -14,7 +14,7 @@ pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)  # Block mouse button down even
 pygame.event.set_blocked(pygame.MOUSEBUTTONUP)  # Block mouse button up events
 
 # Define the directory where the sound files are located
-sound_dir = "/home/pi/apps/babyapp"
+sound_dir = "/home/pi/apps/new/babyapp"
 
 # Define the sound files for each section with absolute paths
 sound_files = {
